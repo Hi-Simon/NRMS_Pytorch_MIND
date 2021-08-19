@@ -12,7 +12,7 @@
     
 ## How to run
 ```bash
-git clone Simon-Lon/NRMS_Pytorch_MIND
+git clone https://github.com/Simon-Lon/NRMS_Pytorch_MIND
 
 cd NRMS_Pytorch_MIND
 python main.py
