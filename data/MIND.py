@@ -250,13 +250,7 @@ class MINDataset(Dataset):
                         click_title_index,
                     )
                 )
-                # yield (
-                #     label,
-                #     impr_index,
-                #     user_index,
-                #     candidate_title_index,
-                #     click_title_index,
-                # )
+
 
         else:
             impr_label = self.labels[line]
@@ -284,14 +278,7 @@ class MINDataset(Dataset):
                         click_title_index,
                     )
                 )
-                #
-                # yield (
-                #     label,
-                #     impr_index,
-                #     user_index,
-                #     candidate_title_index,
-                #     click_title_index,
-                # )
+
 
     def load_data_from_file(self):
         """Read and parse data from news file and behavior file.
@@ -317,54 +304,3 @@ class MINDataset(Dataset):
                 np.random.shuffle(indexes)
             for index in tqdm(indexes, desc='init data'):
                 self.init_data(index)
-
-
-        # label_list = []
-        # imp_indexes = []
-        # user_indexes = []
-        # candidate_title_indexes = []
-        # click_title_indexes = []
-        # cnt = 0
-        #
-        # indexes = np.arange(len(self.labels))
-        #
-        # if self.npratio > 0:
-        #     np.random.shuffle(indexes)
-        #
-        # for index in indexes:
-        #     for (
-        #             label,
-        #             imp_index,
-        #             user_index,
-        #             candidate_title_index,
-        #             click_title_index,
-        #     ) in self.parser_one_line(index):
-        #         candidate_title_indexes.append(candidate_title_index)
-        #         click_title_indexes.append(click_title_index)
-        #         imp_indexes.append(imp_index)
-        #         user_indexes.append(user_index)
-        #         label_list.append(label)
-        #
-        #         cnt += 1
-        #         if cnt >= self.batch_size:
-        #             yield self._convert_data(
-        #                 label_list,
-        #                 imp_indexes,
-        #                 user_indexes,
-        #                 candidate_title_indexes,
-        #                 click_title_indexes,
-        #             )
-        #             label_list = []
-        #             imp_indexes = []
-        #             user_indexes = []
-        #             candidate_title_indexes = []
-        #             click_title_indexes = []
-        #             cnt = 0
-        # if cnt > 0:
-        #     yield self._convert_data(
-        #         label_list,
-        #         imp_indexes,
-        #         user_indexes,
-        #         candidate_title_indexes,
-        #         click_title_indexes,
-        #     )
