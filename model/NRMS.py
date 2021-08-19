@@ -10,16 +10,8 @@ class NRMSModel(nn.Module):
         super(NRMSModel, self).__init__()
         self.hparams = hparams
         self.doc_encoder = DocEncoder(hparams, weight=weight)
-        # proj = InProjContainer(nn.Linear(hparams['encoder_size'], hparams['encoder_size']),
-        #                        nn.Linear(hparams['encoder_size'], hparams['encoder_size']),
-        #                        nn.Linear(hparams['encoder_size'], hparams['encoder_size']))
-        # self.mha = nn.MultiheadAttention(hparams['encoder_size'], hparams['nhead'], dropout=0.1)
         self.mha = nn.MultiheadAttention(hparams['encoder_size'], hparams['nhead'], dropout=0.1)
 
-        # self.mha = MultiheadAttentionContainer(nhead=hparams['nhead'],
-        #                                        in_proj_container=proj,
-        #                                        attention_layer=ScaledDotProduct(),
-        #                                        out_proj=nn.Linear(hparams['encoder_size'], hparams['encoder_size']))
         self.proj = nn.Linear(hparams['encoder_size'], hparams['encoder_size'])
         self.additive_attn = AdditiveAttention(hparams['encoder_size'], hparams['v_size'])
         self.criterion = nn.CrossEntropyLoss()
@@ -58,4 +50,3 @@ class NRMSModel(nn.Module):
             loss = self.criterion(logits, label.long())
             return loss, logits
         return torch.sigmoid(logits)
-        # return torch.softmax(logits, -1)

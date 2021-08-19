@@ -51,7 +51,6 @@ def replace_test(modify_news_id=None,
     print(trainer.fit(model))
     metric_list = trainer.test(model)
     return metric_list[0]['mrr']
-    # print(trainer.logger.experiment.)
 
 
 if __name__ == "__main__":
